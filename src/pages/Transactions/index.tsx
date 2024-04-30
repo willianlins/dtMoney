@@ -4,6 +4,10 @@ import { SearchForm } from './components/SearchForm'
 import { PriceHighLiht, TransactionContainer, TransactionTable } from './styles'
 
 export function Transactions() {
+  fetch('http://localhost:3000/transactions').then((resp) => {
+    console.log(resp)
+  })
+
   return (
     <div>
       <Header />
