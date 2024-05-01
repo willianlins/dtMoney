@@ -15,6 +15,30 @@
       "category": "Alimentação",
       "price": 50,
       "createdAt": "2024-04-19T19:22:54.124Z"
+    },
+    {
+      "id": 4,
+      "description": "Iginite Rocketseat",
+      "type": "outcome",
+      "category": "Educação",
+      "price": 5000,
+      "createdAt": "2024-04-10T19:22:54.124Z"
+    },
+    {
+      "description": "Desenvolvimento de app",
+      "price": 1000,
+      "type": "income",
+      "category": "venda",
+      "createdAt": "2024-05-01T14:59:15.077Z",
+      "id": 5
+    },
+    {
+      "description": "videiogame",
+      "price": 5000,
+      "type": "income",
+      "category": "jogo",
+      "createdAt": "2024-05-01T15:14:55.853Z",
+      "id": 6
     }
   ]
 }

@@ -1,12 +1,13 @@
+import { useContext } from 'react'
 import { Header } from '../../components/Header'
 import { Summary } from '../../components/Summary'
 import { SearchForm } from './components/SearchForm'
 import { PriceHighLiht, TransactionContainer, TransactionTable } from './styles'
+import { TransactionsContext } from '../../contexts/TransactionsContext'
+import { dateFormatter, priceFormatter } from '../../utils/formatter'
 
 export function Transactions() {
-  fetch('http://localhost:3000/transactions').then((resp) => {
-    console.log(resp)
-  })
+  const { transaction } = useContext(TransactionsContext)
 
   return (
     <div>
@@ -17,22 +18,23 @@ export function Transactions() {
         <SearchForm />
         <TransactionTable>
           <tbody>
-            <tr>
-              <td width="50%">Desensvolvimento de Site</td>
-              <td>
-                <PriceHighLiht variant="income">R$ 12.000,00</PriceHighLiht>
-              </td>
-              <td>Venda</td>
-              <td>13/04/2022</td>
-            </tr>
-            <tr>
-              <td width="50%">Hambuguer</td>
-              <td>
-                <PriceHighLiht variant="outcome">- R$ 59,00</PriceHighLiht>
-              </td>
-              <td>Venda</td>
-              <td>18/04/2022</td>
-            </tr>
+            {transaction.map((transaction) => {
+              return (
+                <tr key={transaction.id}>
+                  <td width="50%">{transaction.description}</td>
+                  <td>
+                    <PriceHighLiht variant={transaction.type}>
+                      {transaction.type === 'outcome' && '- '}
+                      {priceFormatter.format(transaction.price)}
+                    </PriceHighLiht>
+                  </td>
+                  <td>{transaction.category}</td>
+                  <td>
+                    {dateFormatter.format(new Date(transaction.createdAt))}
+                  </td>
+                </tr>
+              )
+            })}
           </tbody>
         </TransactionTable>
       </TransactionContainer>
